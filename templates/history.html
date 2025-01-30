@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat History</title>
+</head>
+<body>
+    <h2>Chat History</h2>
+    <table border="1">
+        <tr>
+            <th>Timestamp</th>
+            <th>User Query</th>
+            <th>Response</th>
+        </tr>
+        {% for chat in chat_history %}
+        <tr>
+            <td>{{ chat[0] }}</td>
+            <td>{{ chat[1] }}</td>
+            <td>{{ chat[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">Back to Chat</a>
+</body>
+</html>

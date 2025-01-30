@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RAG Chat</title>
+</head>
+<body>
+    <h2>Ask any queries about autism:</h2>
+    <form method="POST">
+        <input type="text" name="query" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% if response %}
+        <h3>Response:</h3>
+        <p>{{ response }}</p>
+    {% endif %}
+    <br>
+    <a href="/history">View Chat History</a>
+</body>
+</html>
