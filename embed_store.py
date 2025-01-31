@@ -4,7 +4,6 @@ from haystack.components.generators import HuggingFaceAPIGenerator
 from haystack.components.embedders import HuggingFaceAPITextEmbedder
 from haystack.components.builders import PromptBuilder
 from haystack import Pipeline
-import os
 
 def query_reterival_pipeline():
     """Returns pipeline for querying"""
@@ -34,7 +33,6 @@ def query_reterival_pipeline():
     querying = Pipeline()
     querying.add_component("query_embedder", query_embedder)
     querying.add_component("retriever", retriever)
-    # querying.add_component("retriever", retriever)
     querying.add_component("prompt_builder", prompt_builder)
     querying.add_component("llm", llm)
 

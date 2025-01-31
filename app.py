@@ -13,6 +13,7 @@ my_sql_username = os.getenv("MYSQL_USER")
 my_sql_password = os.getenv("MYSQL_PASSWORD")
 
 # Initialize Database & Query Pipeline (Run Once)
+data_preprocessing.pipeline_building()
 data_preprocessing.initialize_db(my_sql_username, my_sql_password)
 querying_pipeline = embed_store.query_reterival_pipeline()
 
