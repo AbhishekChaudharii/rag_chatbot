@@ -48,10 +48,17 @@ def pipeline_building():
     return document_store
 
 def initialize_db(my_sql_username,my_sql_password):
+    """Initializes the MySQL database to store chat history
+    
+        Parameters:
+                my_sql_username (str): MySQL Username
+                my_sql_password (str): MySQL Password
+
+    """
     mysql_config = {
     "host": "localhost",
-    "user": my_sql_username,  # Replace with your MySQL username
-    "password": my_sql_password,  # Replace with your MySQL password
+    "user": my_sql_username,  
+    "password": my_sql_password, 
     }
     try:
         # Connect to MySQL server
@@ -79,12 +86,3 @@ def initialize_db(my_sql_username,my_sql_password):
         if connection.is_connected():
             cursor.close()
             connection.close()
-
-
-
-# if __name__=="__main__":
-#     # Load environment variables
-#     load_dotenv()
-#     hf_token = os.getenv("HF_API_TOKEN")
-#     print("Hugging Face Token Loaded:", hf_token[:5] + "..." if hf_token else "Not Found")
-#     data_storing_pipeline = pipeline_building()

@@ -42,14 +42,4 @@ def query_reterival_pipeline():
 
     return querying
 
-    
-  
-
-# if __name__=="__main__":
-#     # load_dotenv()
-#     # hf_token = os.getenv("HF_API_TOKEN")
-#     # print("Hugging Face Token Loaded:", hf_token[:5] + "..." if hf_token else "Not Found")
-#     # document_store = data_preprocessing.pipeline_building()
-#     # print(query_reterival_pipeline(document_store=document_store,query="Is adhd real?"))
-
 

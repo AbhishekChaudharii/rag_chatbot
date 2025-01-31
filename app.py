@@ -7,18 +7,22 @@ import data_preprocessing
 
 app = Flask(__name__)
 
-# Load environment variables
-load_dotenv()
+
+load_dotenv() # Loads environment variables
 my_sql_username = os.getenv("MYSQL_USER")
 my_sql_password = os.getenv("MYSQL_PASSWORD")
 
-# Initialize Database & Query Pipeline (Run Once)
+# Initializing Database & Query Pipeline
 data_preprocessing.pipeline_building()
 data_preprocessing.initialize_db(my_sql_username, my_sql_password)
 querying_pipeline = embed_store.query_reterival_pipeline()
 
-# Function to Store Chat History
+
 def store_chat(user_query, result):
+    """Stores Chat History
+    Parameters:
+            user_query (str): User's query
+            result (str): Model's output"""
     try:
         connection = mysql.connector.connect(
             host="localhost",
@@ -37,8 +41,8 @@ def store_chat(user_query, result):
             cursor.close()
             connection.close()
 
-# Function to Retrieve Chat History
 def get_chat_history():
+    """Retrieves Chat History"""
     try:
         connection = mysql.connector.connect(
             host="localhost",
@@ -58,7 +62,6 @@ def get_chat_history():
             cursor.close()
             connection.close()
 
-# Homepage: Chat Interface
 @app.route("/chat", methods=["GET", "POST"])
 def chat():
     response = None
@@ -70,11 +73,11 @@ def chat():
             "llm": {"generation_kwargs": {"max_new_tokens": 350}},
         })
         response = results["llm"]["replies"][0]
-        store_chat(user_query, response)  # Save chat to database
+        store_chat(user_query, response)  # Saves chats to database
 
     return render_template("chat.html", response=response)
 
-# Chat History Page
+
 @app.route("/history", methods=["GET"])
 def history():
     chat_history = get_chat_history()
